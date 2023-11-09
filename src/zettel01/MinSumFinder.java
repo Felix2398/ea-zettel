@@ -1,6 +1,5 @@
 package zettel01;
 
-import java.util.Random;
 
 public class MinSumFinder {
     public record Result(int i, int j, int sum) {
@@ -14,9 +13,17 @@ public class MinSumFinder {
             }
         }
 
+        public static Result min(Result a, Result b) {
+            if (a.sum() < b.sum()) {
+                return a;
+            } else {
+                return b;
+            }
+        }
+
         public static Result combine(Result left, Result right) {
             if (left.j() + 1 != right.i()) {
-                throw new RuntimeException();
+                throw new RuntimeException("cant merge " + left + " and " + right);
             }
             return new Result(left.i(), right.j(), left.sum() + right.sum());
         }
@@ -88,5 +95,18 @@ public class MinSumFinder {
             }
         }
         return new Result(mid, new_right, min);
+    }
+
+    public static Result minSumDynamic(int[] arr) {
+        Result minSum = new Result(-1, -1, Integer.MAX_VALUE);
+        Result sum = new Result (0, -1, 0);
+
+        for (int i = 0; i < arr.length; i++) {
+            Result current = new Result(i, i, arr[i]);
+            sum = Result.min(current, Result.combine(sum, current));
+            minSum = Result.min(minSum, sum);
+        }
+
+        return minSum;
     }
 }

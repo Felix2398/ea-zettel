@@ -37,10 +37,41 @@ class MinSumFinderTest {
     }
 
     @Test
-    void minSumDivideConquer_crossingMidPoint() {
+    void minSumDivideAndConquer_crossingMidPoint() {
         int[] arr = {6, 2, 2, 8, -6, -1, 4, 3, 0, -1};
         MinSumFinder.Result expected = new MinSumFinder.Result(4, 5, -7);
         MinSumFinder.Result actual = MinSumFinder.minSumDivideConquer(arr);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void minSumDynamic_exampleFromExercise() {
+        MinSumFinder.Result expected = new MinSumFinder.Result(1, 3, -5);
+        MinSumFinder.Result actual = MinSumFinder.minSumDynamic(testArr1);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void minSumDynamic_oneElement() {
+        int[] arr = {1};
+        MinSumFinder.Result expected = new MinSumFinder.Result(0, 0, 1);
+        MinSumFinder.Result actual = MinSumFinder.minSumDynamic(arr);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void minSumDynamic_twoElements() {
+        int[] arr = {3, -2};
+        MinSumFinder.Result expected = new MinSumFinder.Result(1, 1, -2);
+        MinSumFinder.Result actual = MinSumFinder.minSumDynamic(arr);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void minSumDynamic_crossingMidPoint() {
+        int[] arr = {6, 2, 2, 8, -6, -1, 4, 3, 0, -1};
+        MinSumFinder.Result expected = new MinSumFinder.Result(4, 5, -7);
+        MinSumFinder.Result actual = MinSumFinder.minSumDynamic(arr);
         Assertions.assertEquals(expected, actual);
     }
 }
