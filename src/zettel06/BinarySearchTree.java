@@ -1,4 +1,4 @@
-package zettel03;
+package zettel06;
 
 import java.util.ArrayList;
 import java.util.List;
